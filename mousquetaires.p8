@@ -1,11 +1,10 @@
 pico-8 cartridge // http://www.pico-8.com
 version 38
 __lua__
---init
 
+--init
 function _init()
 	create_player()
-	
 end
 
 function _update()
