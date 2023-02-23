@@ -148,7 +148,7 @@ end
 
 function init_msg()
 	messages={}
---	create_msg("panneau","rentre dans\nle cercle")
+	create_msg("panneau","rentre dans\nle cercle")
 end
 
 --boite de dialogue
