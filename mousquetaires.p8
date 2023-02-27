@@ -96,8 +96,11 @@ function player_mouvement()
 	if p.anim_t == 0 then
      newox = 0
      newoy = 0
- if btn(❎) then 
- 			 shoot()
+	if (btnp(❎)) shoot()
+ if btn(⬅️) then
+     newx -= 1
+     newox = 8
+     p.flip=true
  elseif btn(➡️) then
    	 newx += 1
      newox = -8
@@ -108,10 +111,6 @@ function player_mouvement()
  elseif btn(⬇️) then
      newy += 1
      newoy = -8
- elseif btn(⬅️) then
-     newx -= 1
-     newox = 8
-     p.flip=true
         end
     end
     
