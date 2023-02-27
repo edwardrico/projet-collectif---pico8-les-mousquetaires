@@ -7,6 +7,7 @@ function _init()
 	create_player()
 	bullets={}
 	enemies={}
+	explosions={}
 	
 	spawn_zombie(3,4)
 	spawn_robot(26,4)
@@ -35,6 +36,7 @@ cls()
  -- ennemis
  	draw_zombie()
  	draw_robot()
+ 	draw_explosions()
  --interface
 		draw_ui()
 	--dialogue
@@ -259,12 +261,10 @@ end
 -->8
 -- zombie
 
---
-
 function spawn_zombie(a,b)
 	zombie={
-	x=(a),
-	y=(b),
+	x=a,
+	y=b,
 	life=5,
 	direction="droite",
 	type="zombie"
@@ -283,24 +283,26 @@ function update_zombie()
 				e.x-=0.2
 			end
 			if check_flag(0,e.x,e.y) then
-		 	if	e.direction=="droite" then
-				e.direction="gauche" 
+				if	e.direction=="droite" then
+					e.direction="gauche" 
 				else
-				e.direction="droite"
+					e.direction="droite"
 				end
 			end
-				
-			 
+			for b in all(bullets) do
+				if collision(e,b) then
+					create_explosion(b.x,b.y)
+					del(bullets,b)
+					e.life-=1
+					if e.life==0 then
+						del(enemies,e)
+					end
+				end
+			end 			 
+		end
 	end
-	end 
 end
---	if e.direction=="gauche" then
-			--	e.direction="droite"
 
---	if not check_flag(0,x,y) 
-		--	then  e.x=mid(0,newx,127)
-  --   e.y=mid(0,newy,63)
--- end
 
 function draw_zombie()
 	for e in all(enemies) do
@@ -309,15 +311,7 @@ function draw_zombie()
 		end
 	end
 end
-
---function place_enemies(x,y)
-	--for e in all(ennemies) do
- 	--newx=flr(e.x*16)
- 	--newy=flr(e.y*16) 
- 	--x=newx
- 	--y=newy
- --end
---end 
+ 
 
 -->8
 -- robot
@@ -366,27 +360,64 @@ end
 
 function shoot()
 new_bullet={
-x=p.x*8,
-y=p.y*8,
-speed=3
+x=p.x,
+y=p.y,
+speed=0.2
 }
 add(bullets,new_bullet) 
 sfx(0)
 end
 
 function update_bullets()
-for b in all(bullets) do
-b.x+=b.speed
-
-end
+	for b in all(bullets) do
+		b.x+=b.speed
+			if b.x<-8 then
+				del(bullets,b)
+			end
+	end
 end
 
 function draw_bullets()
-		--bullets
 	for b in all(bullets) do
-spr(59,b.x,b.y)
+		spr(59,b.x*8,b.y*8)
+	end
 end
+-->8
+-- collision enemies
+
+function collision(a,b)
+return not	((a.x*8)>(b.x*8)+8					
+											or (a.y*8)>(b.y*8)+8
+											or (a.x*8)+8<(b.x*8)
+											or (a.y*8)+8<(b.y*8))
+											
 end
+
+--expolsions
+
+function create_explosion(x,y)
+sfx(3)
+add(explosions,{x=(x*8),
+               y=(y*8),
+               timer=0})
+end
+ 
+ function update_explosions()
+ 	for e in all(explosions)do
+ 	e.timer+=1
+ 		if e.timer==13 then
+ 			del(explosions,e)
+ 		end
+ 	end
+ end
+ 
+ function draw_explosions()
+ 	circ(x,y,rayon,couleur)
+ 		for e in all(explosions) do
+ 		circ(e.x,e.y,e.timer/3,
+     8+e.timer%3)
+ 		end
+ end     
 __gfx__
 0000000033333333ff9888ff3333333333333333444444444444444411111114111111114444444441111111333333344ddddddd111111144111111115444451
 0000000033333333888888883bbbbbb333333933ddddddddddddddd41111111d111111114ddddddd41111111333333344111111111111114d111111116ffff61
