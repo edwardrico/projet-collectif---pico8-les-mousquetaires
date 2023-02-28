@@ -10,7 +10,7 @@ function _init()
 	bullets={}
 	enemies={}
 	explosions={}
- totallife = p.life
+    totallife = p.life
 	
 	spawn_zombie(3,4)
 	spawn_robot(6,5)
@@ -28,7 +28,6 @@ end
 function _update()
 --_update dans -> main menu
 --update menu ⬇️
-	update_m()
 
 end 
 
