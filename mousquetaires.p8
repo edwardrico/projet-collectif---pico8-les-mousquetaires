@@ -7,8 +7,14 @@ function _init()
 	create_player()
 	bullets={}
 	enemies={}
-	spawn_zombie(29,21)
-	spawn_robot(29,21)
+	explosions={}
+	
+
+	spawn_zombie(3,4)
+	spawn_robot(26,4)
+	spawn_robot(09,19)
+	spawn_robot(11 ,19)
+--	place_enemies(x,y)
 	init_msg()
 	--main menu v
 	scene="menu"
@@ -84,6 +90,18 @@ function create_player()
 end
 
 function player_mouvement()
+
+newx=p.x
+newy=p.y
+
+
+interact(newx,newy)
+
+if (btnp(➡️)) newx+=1
+if (btnp(⬅️)) newx-=1
+if (btnp(⬇️)) newy+=1
+if (btnp(⬆️)) newy-=1
+
 	newx=p.x
 	newy=p.y
 	if p.anim_t == 0 then
@@ -110,6 +128,7 @@ function player_mouvement()
 	interact(newx,newy)
 	
 	--collision obstacles
+-->>>>>>> 555af302a68684dd90b4e66c2e06f25eff7ed2d5
 
  if (newx!=p.x or newy!=p.y) and
   not check_flag(0,newx,newy) 
@@ -133,6 +152,8 @@ then  p.x=mid(0,newx,127)
 	end
 end
 
+--<<<<<<< HEAD
+--=======
 --ramassage de cle
 
 function interact(x,y)
@@ -142,12 +163,36 @@ function interact(x,y)
 	and p.keys>0 then
 		open_door(x,y)
 	end
-end
+	
+	--messages de interaction 
+	 
+	if x==22 and y==11 then 
+		create_msg("dorian","cherche les enemi")
+	end	
+	if x==5 and y==4 then 
+		create_msg("dorian", "cherche la cle ouvre la porte")
+	end
+	if x==21 and y==20 and not enemie then 
+		create_msg("dorian","prenez la cle a gauche")
+		enemie=true		
+	end	
+	if x==27  and y==7 
+	and not riviera then 
+			create_msg ("dorian","tu ne peut pas passe",
+		" prend la cle"," ouvre la porte")
+				riviera=true
+			end
+	if x==18 and y==27 then 
+		create_msg("dorina", "je suis content de te voir",
+		"sortons de ici")
+	end
+end 
 
 
 --sprite joueur
 
 
+-->>>>>>> 555af302a68684dd90b4e66c2e06f25eff7ed2d5
 function draw_player()
 	palt(15, true)
 	palt(0, false)
@@ -175,6 +220,8 @@ function new_camera()
  camy=flr(p.y/16)*16
  camera(camx*8,camy*8)
 end
+
+
 -->8
 -- user interface
 
@@ -225,20 +272,18 @@ end
 function draw_msg()
 	if messages[1] then
 		local y=100
-		if p.y%16>=9 then
-		y=10
-		end
+		
 		--titre
-		rectfill(7,y-65,10+#msg_title*4,y-71,2)
-		print (msg_title,9,y-70,10)
+		rectfill(7,y,11+#msg_title*4,y+7,2)
+		print (msg_title,10,y-2,9)
 		--message
-		print(messages[1],35,50,0)
+		rectfill(3,y+8,124,y+24,4)
+		rect(3,y+8,124,y+24,2)
+		print(messages[1],6,y+11,15)
 	end
 end
 -->8
 -- zombie
-
---
 
 function spawn_zombie(a,b)
 	zombie={
@@ -254,43 +299,51 @@ end
 
 
 function update_zombie()
-
 	for e in all(enemies) do
-	if e.type=="zombie" then
-		if e.direction=="droite" then
-			e.x+=1
-		else
-			e.x-=1
-		end
-		if e.x>=64 and e.direction=="droite" then
-			e.direction="gauche"
-			
-		end
-		if e.x<=8 and e.direction=="gauche" then
-		
-			e.direction="droite"
-			
+		if e.type=="zombie" then
+			if e.direction=="droite" then
+				e.x+=0.2
+			else
+				e.x-=0.2
+			end
+			if check_flag(0,e.x,e.y) then
+				if	e.direction=="droite" then
+					e.direction="gauche" 
+				else
+					e.direction="droite"
+				end
+			end
+			for b in all(bullets) do
+				if collision(e,b) then
+					create_explosion(b.x,b.y)
+					del(bullets,b)
+					e.life-=1
+					if e.life==0 then
+						del(enemies,e)
+					end
+				end
+			end 			 
 		end
 	end
-	end 
 end
+
 
 function draw_zombie()
 	for e in all(enemies) do
 		if e.type=="zombie" then
-			spr(112,e.x,e.y)
-			palt(15, true)
-			palt(0, false)
+			spr(112,e.x*8,e.y*8)
 		end
 	end
 end
+ 
+
 -->8
 -- robot
 
 function spawn_robot(a,b)
 	robot={
-	x=a,
-	y=b,
+	x=(a),
+	y=(b),
 	life=5,
 	direction="haut",
 	type="robot"
@@ -303,16 +356,17 @@ function update_robot()
 	for e in all(enemies) do
 	if e.type=="robot" then
 		if e.direction=="haut" then
-			e.y+=1
+			e.y+=0.2
 		else
-			e.y-=1
+			e.y-=0.2
 		end
-		if e.y>=50 and e.direction=="haut" then
-			e.direction="bas"
-		end
-		if e.y<=15 and e.direction=="bas" then
-			e.direction="haut"
-		end
+		if check_flag(0,e.x,e.y) then
+		 	if	e.direction=="haut" then
+				e.direction="bas" 
+				else
+				e.direction="haut"
+				end
+			end
 	end
 	end 
 end
@@ -320,36 +374,95 @@ end
 function draw_robot()
 	for e in all(enemies) do
 		if e.type=="robot" then
-			spr(113,e.x,e.y)
+			spr(113,e.x*8,e.y*8)
 		end
 	end
 end
  
 -->8
+--<<<<<<< HEAD
+--message 
+
+--message
+
+function init_msg()
+	messages={}
+	create_msg("dorian",
+	[[
+	bienvenue
+	a notre jeu les mosquetaire
+]],
+	"go...")
+	
+end 
+
+function create_msg(name,...)
+	msg_title=name
+	messages={...}
+end
+
+function update_msg()
+	if btnp(❎) then 
+		deli(messages,1)
+	end
+end 
+
+
+function draw_msg()
+	if messages[1] then
+		local y=100
+		if p.y%16>=9 then 
+	  y=10
+	 end
+	 rectfill(7,y,7+#msg_title*4,y+7,2)
+	 print(msg_title,10,y+2,9)
+	 
+	 rectfill(3,y+8,124,y+24,4)
+	 rect(3,y+8,124,y+24,2)
+ 	print(messages[1],6,y+11,15)
+ 	end
+end
+
+--function interaction 
+	
+
+	
+--=======
 --bullets
 
 function shoot()
 new_bullet={
-x=p.x*8,
-y=p.y*8,
-speed=3
+x=p.x,
+y=p.y,
+speed=0.2
 }
 add(bullets,new_bullet) 
 sfx(0)
 end
 
 function update_bullets()
-for b in all(bullets) do
-b.x+=b.speed
-
-end
+	for b in all(bullets) do
+		b.x+=b.speed
+			if b.x<-8 then
+				del(bullets,b)
+			end
+	end
 end
 
 function draw_bullets()
-		--bullets
 	for b in all(bullets) do
-spr(59,b.x,b.y)
+		spr(59,b.x*8,b.y*8)
+	end
 end
+-->8
+-- collision enemies
+
+function collision(a,b)
+return not	((a.x*8)>(b.x*8)+8					
+											or (a.y*8)>(b.y*8)+8
+											or (a.x*8)+8<(b.x*8)
+											or (a.y*8)+8<(b.y*8))
+											
 end
 -->8
 --main menu
@@ -408,6 +521,8 @@ function update_game()
 	update_robot()
 	new_camera()
 	update_msg()
+	--explosions
+	update_explosions()
 	 
 end
 
@@ -422,6 +537,8 @@ function draw_game()
 	--dialogue
 		draw_msg()
 	 draw_bullets()
+	--explosions
+	 draw_explosions()
 	 lose()
 end 
 -->8
@@ -456,6 +573,32 @@ end
 
 
 
+-->8
+--expolsions
+
+function create_explosion(x,y)
+sfx(3)
+add(explosions,{x=(x*8),
+               y=(y*8),
+               timer=0})
+end
+ 
+ function update_explosions()
+ 	for e in all(explosions)do
+ 	e.timer+=1
+ 		if e.timer==13 then
+ 			del(explosions,e)
+ 		end
+ 	end
+ end
+ 
+ function draw_explosions()
+ 	circ(x,y,rayon,couleur)
+ 		for e in all(explosions) do
+ 		circ(e.x,e.y,e.timer/3,
+     8+e.timer%3)
+ 		end
+ end  
 __gfx__
 0000000033333333ff9888ff3333333333333333444444444444444411111114111111114444444441111111333333344ddddddd111111144111111115444451
 0000000033333333998888883bbbbbb333333933ddddddddddddddd41111111d111111114ddddddd41111111333333344111111111111114d111111116ffff61
