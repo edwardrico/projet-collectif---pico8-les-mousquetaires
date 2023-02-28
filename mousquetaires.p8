@@ -505,13 +505,16 @@ function draw_game()
  -- ennemis
  	draw_zombie()
  	draw_robot()
+	 draw_explosions()
+	  draw_bullets()
+	  draw_showlife()
  --interface
 		draw_ui()
 	--dialogue
 		draw_msg()
-	 draw_bullets()
+	
 	--explosions
-	 draw_explosions()
+	
 	 lose()
 end 
 -->8
