@@ -303,7 +303,7 @@ function update_zombie()
 			else
 				e.x-=0.2
 			end
-			if check_flag(0,(e.x-8),e.y) then
+			if check_flag(0,(e.x-8),e.y) 
 			 or check_flag(0,e.x,e.y) then
 				if	e.direction=="droite" then
 					e.direction="gauche" 
@@ -429,7 +429,7 @@ function draw_msg()
  	print(messages[1],6,y+11,15)
  	end
 end
-t 
+ 
 --function interaction 
 	
 
@@ -535,22 +535,31 @@ function update_game()
 	end
 	update_zombie()
 	update_robot()
+	update_explosions()
 	new_camera()
 	update_msg()
 	--explosions
-	update_explosions()
+	
 	 
 end
 
 function draw_game()
 		draw_map()
+		if(c>=0) then
+			if(sin(c/4)<0) then
   draw_player()
  -- ennemis
  	draw_zombie()
  	draw_robot()
+			end
+		else
+		draw_player()
+		draw_zombie()
+ 		draw_robot()
 	 draw_explosions()
+		end
 	  draw_bullets()
-	  draw_showlife()
+	  show_life()
  --interface
 		draw_ui()
 	--dialogue
