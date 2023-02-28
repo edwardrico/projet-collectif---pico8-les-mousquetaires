@@ -10,8 +10,10 @@ function _init()
 	bullets={}
 	enemies={}
 	explosions={}
+ totallife = p.life
 	
 	spawn_zombie(3,4)
+	spawn_robot(6,5)
 	spawn_robot(26,4)
 	spawn_robot(09,19)
 	spawn_robot(11 ,19)
@@ -93,6 +95,8 @@ function create_player()
 end
 
 function player_mouvement()
+
+	newx=p.x
 	newx=p.x
 	newy=p.y
 	if p.anim_t == 0 then
@@ -118,16 +122,26 @@ function player_mouvement()
         end
     end
     
-	interact(newx,newy)
-	c-=1
-	if c<=0 then
-		for e in all (enemies) do
-			if  collision(e,p) then
-				p.life-=1
-				c=30		
-			end
-		end
+    --colilision avec player 
+ c-=1
+if c<=0 then
+for e in all (enemies) do
+if (collision(e,p))then 
+sfx(1)
+p.life-=1
+c=30
 	end
+	end
+	--life-----
+
+if (p.life<=0) then
+cls(0)
+stop("try next time...",40,60,7)
+end
+	end
+	
+	interact(newx,newy)
+
 	
 	--collision obstacles
 
@@ -185,14 +199,15 @@ function draw_player()
 end
 
 
+	
 -->8
 --camera
 
-function update_camera()
-	camx=mid(0,p.x-7.5,31-15)
-	camy=mid(0,p.y-7.5,31-15)
-	camera(camx*8,camy*8)
-end
+--function update_camera()
+	--camx=mid(0,p.x-7.5,31-15)
+	--camy=mid(0,p.y-7.5,31-15)
+	--camera(camx*8,camy*8)
+--end
  
 --camera section
  
@@ -226,24 +241,6 @@ function print_outline(text,x,y)
 	print(text,x,y,7)	
 end
 
--- nombre de coeur
-
-function draw_showlife()
-	camera()
-	palt(0,false)
-	palt(12,true)
-	spr(99,112,1)
-	palt()
-	print_outlinelife("X"..p.life,120,2)
-end
-
-function print_outlinelife(text,x,y)
-	print(text,x-1,y,0)
-	print(text,x+1,y,0)
-	print(text,x,y-1,0)
-	print(text,x,y+1,0)
-	print(text,x,y,7)	
-end
 -->8
 -- messages pnj
 
@@ -392,6 +389,52 @@ function draw_robot()
 end
  
 -->8
+ 
+--message
+
+function init_msg()
+	messages={}
+	create_msg("dorian",
+	[[
+	bienvenue
+	a notre jeu les mosquetaire
+]],
+	"go...")
+	
+end 
+
+function create_msg(name,...)
+	msg_title=name
+	messages={...}
+end
+
+function update_msg()
+	if btnp(❎) then 
+		deli(messages,1)
+	end
+end 
+
+
+function draw_msg()
+	if messages[1] then
+		local y=100
+		if p.y%16>=9 then 
+	  y=10
+	 end
+	 rectfill(7,y,7+#msg_title*4,y+7,2)
+	 print(msg_title,10,y+2,9)
+	 
+	 rectfill(3,y+8,124,y+24,4)
+	 rect(3,y+8,124,y+24,2)
+ 	print(messages[1],6,y+11,15)
+ 	end
+end
+t 
+--function interaction 
+	
+
+	
+--=======
 --bullets
 
 function shoot()
@@ -423,7 +466,7 @@ end
 
 function draw_bullets()
 	for b in all(bullets) do
-	palt(0,true)
+		palt(0,true)
 		spr(59,b.x*8,b.y*8)
 	end
 end
@@ -574,7 +617,27 @@ end
  		circ(e.x,e.y,e.timer/3,
      8+e.timer%3)
  		end
- end  
+ end     
+-->8
+--la barre de vie
+
+function show_life()
+	 camera()
+		palt(0,false)
+		palt(12,true)
+		spr(80,2,2)
+		palt()
+		
+	for i=1,totallife do
+		spr(62,128-i*8,0)
+	end
+	
+	for i=1,p.life do
+		spr(63,128 -i*8,0)
+	end
+end
+
+
 __gfx__
 0000000033333333ff9888ff3333333333333333444444444444444411111114111111114444444441111111333333344ddddddd111111144111111115444451
 0000000033333333998888883bbbbbb333333933ddddddddddddddd41111111d111111114ddddddd41111111333333344111111111111114d111111116ffff61
@@ -807,8 +870,8 @@ __map__
 313134343431311f1f1f0103011c01031f01011311120101011f1f1f1f031f031f2623212622262126212123232621313131343446363434464634343434343101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
 313131313131311f1f0303031f1f1f1f030303030303031f1f0303031f030103032826262623232626222626242326313131313131313131313131313131313101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
 __sfx__
-000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-00100000100501805020050240501b000220002000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000
+0001000000000000002905027050250502305021050200501d0501c0501a050170501405000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+001400000b05009050060500905000000000000000000000000000000000000000000310002100021000210002100021000000000000000000000000000000000000000000000000000000000000000000000000
 000400002a0502205019050110501c00023000270002a0002d0003000031000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 011300001f7001f0001f7001f0001f7001f0001f0001f0001f700257001f700287001f700257001f7001f7001f0001f7001f7001f0001f7001f0001f7001f0001f7001f0001f0001f70000000000000000000000
 011000000c0000c0000c0000c000246000c0000c0000c0000c0000c0000c0000c000246000c0000c0000c0000c0000c0000c0000c000246000c000107000c0000c0001d7001d7001d700246001d7000c00000000
