@@ -783,14 +783,11 @@ end
 function change_music()
 		if p.x==35 and p.y==25 then
 			music(0)
-		end
-		if p.x==64 and y==13 then
+	elseif p.x==64 and y==13 then
 			music(24)
-		end
-		if p.x==96 and y==02 then
+	elseif p.x==96 and y==02 then
 			music(29)
-		end
-		if p.x==111 and y==23 then
+	elseif p.x==111 and y==23 then
 		music(9)
 		end
 end
