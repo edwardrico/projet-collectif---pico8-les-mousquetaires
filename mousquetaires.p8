@@ -10,7 +10,7 @@ function _init()
 	bullets={}
 	enemies={}
 	explosions={}
-    totallife = p.life
+ totallife = p.life
 	
 	spawn_zombie(3,4)
 	spawn_robot(6,5)
@@ -179,10 +179,96 @@ function interact(x,y)
 		open_door(x,y)
 	end
 
-	if x==22 and y==11 then
-		create_msg("panneau2","ca marche")
+	if x==5 and y==4  then
+		create_msg("panneau2","les trois mousquetaires\nont disparu retrouve-les ")
 	end
-end	
+	
+		if x==11 and y==4  then
+		create_msg("hermione"," si tu veux eliminer tes\nennemies, appuies sur x")
+end
+
+	if x==22 and y==11  then
+create_msg("panneau","fait attention donjon\nplus loin")
+end
+	if x==17 and y==21  then
+create_msg("panneau","y a quelqu'un a sauver\nplus loin", "peut-etre que c'est\n un mousquetaire")
+end
+
+if x==3 and y==20  then
+create_msg("batman","tu t'en les bien sortis", "t'inquiete je n'ai pas besoin\nd'aide","je suis batman")
+end
+
+if x==18 and y==27 then
+create_msg("link","yaah,hiyaah,yaah")
+end
+
+if x==22 and y==28 then
+	create_msg("panneau","tu vas changer\nle monde"," village de cowboy\nplus loin ")
+end
+
+if x==42 and y==24 then
+	create_msg("cowboy","bienvenue au desert","au passage tu n'aurais\npas vu les daltons !")
+end
+if x==46 and y==24 then
+	create_msg("panneau","si tu n'as pas trouve\nla cle"," cherche en haut\ndu village ")
+end
+if x==55 and y==25 then
+	create_msg("schtroumpfette","merci de m'avoir sauve","je m'etais bien fait\nschtroumpfer")
+end
+if x==56 and y==5 then
+	create_msg("pumbaa","hakuna matata\nqu'est-ce qu'on est bien ici","y a plein d'insectes ")
+end
+if x==37 and y==10 then
+	create_msg("joe dalton","ne dit pas a lucky luke\nque je suis la !","je te donne la cle\nen echange.")
+end
+if x==67 and y==12 then
+	create_msg("bonhomme de neige","bienvenue au monde\ndes neiges…","quoi ?\noui, je vais tres bien","je me suis mis au chaud ")
+end
+if x==83 and y==02 then
+	create_msg("anna","est-ce que tu n'as pas vu\nmr soeur","j'ai fait tout pour\nla retrouver","on doit feter mon renouveau ")
+end
+if x==93 and y==12 then
+	create_msg("panneau","si tu as rate une cle\nretourne en arriere","et visite le village\na gauche")
+end
+if x==66 and y==24 then
+	create_msg("panneau","bienvenue au village de neige")
+end
+
+if x==114 and y==18 then
+	create_msg("gollum","ce n'est pas mon precieux\nc'est juste une cle")
+end
+
+if x==70 and y==18 then
+		create_msg("lara croft","j'ai cru que la cle est une artefact",
+		"mais c'est une cle, tu peux le prendre")
+	end	
+	if x==101 and y==4 then
+		create_msg("peach","bienvenue au printtemp","pour une fois , ce n'est pas moi qui me fais capturer")
+	end
+	if x==110 and y==4 then
+		create_msg("paneau","avance prudemment!ennemi a deux pas.")
+	end	
+	if x==97  and y==12 then
+	 		create_msg ("samus","tu fais une mission!","bonne chance a toi, je voulais bien t'aider,","mais j'ai enleve mon armure,",
+			"car il faisait beau")
+				
+	end
+	if x==100 and y==24 then
+		create_msg("paneau", "tu es bientot arrive")
+	end
+	if x==124 and y==25 then
+	create_msg("spiderman","je ne sais pas trop quoi te dire,","j'ai trop de responsabilite a faire!")
+	end
+	
+	if x==125 and y==11 then
+	create_msg("sonic","ca fait un moment que je suis la,",
+	"tu es un peu lent mais bien jouer quand meme")
+ end
+ if x==121 and y==06 then
+		create_msg("yoda", "fini, tu as, mousquetaire,","a present, tu es")
+	end
+	end
+
 
 
 --sprite joueur
@@ -200,6 +286,7 @@ end
 
 
 	
+
 -->8
 --camera
 
