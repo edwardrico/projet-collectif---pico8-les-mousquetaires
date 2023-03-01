@@ -9,14 +9,39 @@ function _init()
 	bullets={}
 	enemies={}
 	explosions={}
+	totallife=p.life
 	
 
 	spawn_zombie(3,4)
+	spawn_zombie(59,27)
+	spawn_zombie(61,24)
+	spawn_zombie(62,19)
+	spawn_zombie(68,04)
+	spawn_zombie(96,21)
+	spawn_zombie(113,25)
+	spawn_zombie(118,27)
+	spawn_zombie(118,20)
 	spawn_robot(6,5)
 	spawn_robot(26,4)
 	spawn_robot(09,19)
 	spawn_robot(11 ,19)
---	place_enemies(x,y)
+	spawn_robot(29,20)
+	spawn_robot(7,19)
+	spawn_robot(54,17)
+	spawn_robot(59,17)
+	spawn_robot(78,02)
+	spawn_robot(86,22)
+	spawn_robot(76,25)
+	spawn_robot(106,03)
+	spawn_robot(114,04)
+	spawn_robot(106,10)
+	spawn_robot(106,17)
+	spawn_robot(110,17)
+	spawn_robot(104,23)
+	spawn_robot(108,23)
+	spawn_robot(122,17)
+	spawn_robot(124,17)
+--	place_enespaun_robomies(x,y)
 	init_msg()
 	--main menu v
 	scene="menu"
@@ -85,7 +110,7 @@ function create_player()
 	start_ox=0,start_oy=0,
 	anim_t=0,
 	sprite=2,
-	keys=0,life=3}
+	keys=0,life=5}
 end
 
 function player_mouvement()
@@ -175,31 +200,7 @@ function interact(x,y)
 	
 	--messages de interaction 
 	 
-	if x==22 and y==11 then 
-		create_msg("doria","cherche les enemi")
-	end	
-	if x==5 and y==4 then 
-		create_msg("doria", "cherche la cle ouvre la porte")
-	end
-	if x==21 and y==20 and not enemie then 
-		create_msg("doria","prenez la cle a gauche")
-		enemie=true		
-	end	
-	if x==27  and y==7 
-	and not riviera then 
-			create_msg ("doria","tu ne peut pas passe",
-		" prend la cle"," ouvre la porte")
-				riviera=true
-			end
-	if x==18 and y==27 then 
-		create_msg("doria", "je suis content de te voir",
-		"sortons de ici")
-	end
-end 
-
---sprite joueur
-
-
+	
 function draw_player()
 	palt(15, true)
 	palt(0, false)
@@ -575,9 +576,10 @@ function draw_game()
  	draw_robot()
  	draw_explosions()
  	end
- --interface
+ 
  	draw_bullets()
- 	--show_life()
+ 	show_life()
+ 	--interface
 		draw_ui()
 	--dialogue
 		draw_msg()
@@ -660,7 +662,7 @@ function show_life()
 	end
 	
 	for i=1,p.life do
-		spr(62,128 -i*8,0)
+		spr(62,128-i*8,0)
 	end
 end
 
@@ -897,7 +899,7 @@ __map__
 313134343431310101010101011c010101010113111201010101011f1f031f031f2b21212121212121212121212121212121212121212121212121212121212101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
 313131313131310101011b010101010101011c0101010101010403031f030103032821212121212121212121212121212121212121212121212121212121212101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
 __sfx__
-0001000000000000002905027050250502305021050200501d0501c0501a050170501405000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00060000397502d750247301f77019720147400f7700b770036700667025760287402a720127200564002670107701c77025740297403173032730287501f72019760147700f7700c7700a770087700477001750
 001400000b05009050060500905000000000000000000000000000000000000000000310002100021000210002100021000000000000000000000000000000000000000000000000000000000000000000000000
 000400002a0502205019050110501c00023000270002a0002d0003000031000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 011300001f7001f0001f7001f0001f7001f0001f0001f0001f700257001f700287001f700257001f7001f7001f0001f7001f7001f0001f7001f0001f7001f0001f7001f0001f0001f70000000000000000000000
