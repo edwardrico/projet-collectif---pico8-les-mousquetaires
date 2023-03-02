@@ -12,7 +12,7 @@ function _init()
 	totallife=p.life
 	
 
-	spawn_zombie(3,4)
+	
 	spawn_zombie(59,27)
 	spawn_zombie(61,24)
 	spawn_zombie(62,19)
@@ -21,7 +21,6 @@ function _init()
 	spawn_zombie(113,25)
 	spawn_zombie(118,27)
 	spawn_zombie(118,20)
-	spawn_robot(6,5)
 	spawn_robot(26,4)
 	spawn_robot(09,19)
 	spawn_robot(11 ,19)
@@ -108,7 +107,7 @@ end
 --players
 
 function create_player()
-	p={x=1,y=1,
+	p={x=1,y=2,
 	ox=0,oy=0,
 	start_ox=0,start_oy=0,
 	anim_t=0,
@@ -204,92 +203,92 @@ function interact(x,y)
 	end
 
 	if x==5 and y==4  then
-		create_msg("panneau2","les trois mousquetaires\nont disparu retrouve-les ")
+		create_msg("panneau","les trois mousquetaires\nont disparus, retrouves-les ! ")
 	end
 	
 		if x==11 and y==4  then
-		create_msg("hermione"," si tu veux eliminer tes\nennemies, appuies sur x")
+		create_msg("hermione"," si tu veux eliminer les\nennemis, appuies sur x","ca s'appelle jeter un sort !")
 end
 
 	if x==22 and y==11  then
-create_msg("panneau","fait attention donjon\nplus loin")
+create_msg("panneau","fais attention, donjon\nplus loin")
 end
 	if x==17 and y==21  then
-create_msg("panneau","y a quelqu'un a sauver\nplus loin", "peut-etre que c'est\n un mousquetaire")
+create_msg("panneau","Il y a quelqu'un a sauver\nplus loin", "peut-etre que c'est\n un mousquetaire")
 end
 
 if x==3 and y==20  then
-create_msg("batman","tu t'en les bien sortis", "t'inquiete je n'ai pas besoin\nd'aide","je suis batman")
+create_msg("batman","tu t'en es bien sorti", "t'inquiete je n'ai pas besoin\nd'aide","je suis le batman")
 end
 
 if x==18 and y==27 then
-create_msg("link","yaah,hiyaah,yaah")
+create_msg("link","yaah ! hiyaah ! yaah !")
 end
 
 if x==22 and y==28 then
-	create_msg("panneau","tu vas changer\nle monde"," village de cowboy\nplus loin ")
+	create_msg("panneau","tu vas changer\nde monde"," village de cowboy\nplus loin ")
 end
 
 if x==42 and y==24 then
-	create_msg("cowboy","bienvenue au desert","au passage tu n'aurais\npas vu les daltons !")
+	create_msg("lucky luke","bienvenue au desert","au passage, tu n'aurais\npas vu les daltons ?")
 end
 if x==46 and y==24 then
 	create_msg("panneau","si tu n'as pas trouve\nla cle"," cherche en haut\ndu village ")
 end
 if x==55 and y==25 then
-	create_msg("schtroumpfette","merci de m'avoir sauve","je m'etais bien fait\nschtroumpfer")
+	create_msg("schtroumpfette","merci de m'avoir sauvee","je m'etais bien fais\nschtroumpfer")
 end
 if x==56 and y==5 then
-	create_msg("pumbaa","hakuna matata\nqu'est-ce qu'on est bien ici","y a plein d'insectes ")
+	create_msg("pumba","hakuna matata\nqu'est-ce qu'on est bien ici","y a pleins d'insectes ! ")
 end
 if x==37 and y==10 then
-	create_msg("joe dalton","ne dit pas a lucky luke\nque je suis la !","je te donne la cle\nen echange.")
+	create_msg("joe dalton","ne dis pas a lucky luke\nque je suis la !","je te donne la cle\nen echange.")
 end
 if x==67 and y==12 then
-	create_msg("bonhomme de neige","bienvenue au monde\ndes neiges…","quoi ?\noui, je vais tres bien","je me suis mis au chaud ")
+	create_msg("bonhomme de neige","bienvenue au monde\ndes neiges...","quoi ?\noui, je vais tres bien","je me suis mis au chaud ")
 end
 if x==83 and y==02 then
-	create_msg("anna","est-ce que tu n'as pas vu\nmr soeur","j'ai fait tout pour\nla retrouver","on doit feter mon renouveau ")
+	create_msg("anna","est-ce que tu as vu mon\nbonhomme de neige ?","je l'avais fais pas loin d'ici","Non? Bon...","Tu n'as pas vu ma soeur\nau passage ?")
 end
 if x==93 and y==12 then
-	create_msg("panneau","si tu as rate une cle\nretourne en arriere","et visite le village\na gauche")
+	create_msg("panneau","si tu as rate une cle\nretourne en arriere","visite le village\na gauche")
 end
 if x==66 and y==24 then
 	create_msg("panneau","bienvenue au village de neige")
 end
 
 if x==114 and y==18 then
-	create_msg("gollum","ce n'est pas mon precieux\nc'est juste une cle")
+	create_msg("gollum","ce n'est pas mon precieux...\nc'est juste une cle...")
 end
 
 if x==70 and y==18 then
-		create_msg("lara croft","j'ai cru que la cle est une artefact",
-		"mais c'est une cle, tu peux le prendre")
+		create_msg("lara croft","j'ai cru que c'etait un\nartefact",
+		"mais c'est juste une cle,\ntu peux la prendre")
 	end	
 	if x==101 and y==4 then
-		create_msg("peach","bienvenue au printtemp","pour une fois , ce n'est pas moi qui me fais capturer")
+		create_msg("peach","bienvenue au printemps !","pour une fois que ce n'est pas\nmoi qui me suis fais capturer")
 	end
 	if x==110 and y==4 then
-		create_msg("paneau","avance prudemment!ennemi a deux pas.")
+		create_msg("paneau","avance prudemment! ennemi\na deux pas.")
 	end	
 	if x==97  and y==12 then
-	 		create_msg ("samus","tu fais une mission!","bonne chance a toi, je voulais bien t'aider,","mais j'ai enleve mon armure,",
-			"car il faisait beau")
+	 		create_msg ("samus","tu es en mission ?","bonne chance a toi, je\nvoudrais bien t'aider,","mais j'ai enleve mon armure",
+			"il faisait bon")
 				
 	end
 	if x==100 and y==24 then
 		create_msg("paneau", "tu es bientot arrive")
 	end
 	if x==124 and y==25 then
-	create_msg("spiderman","je ne sais pas trop quoi te dire,","j'ai trop de responsabilite a faire!")
+	create_msg("spiderman","je ne sais pas trop quoi te\ndire","j'ai trop de responsabilites\nsur le dos en ce moment...")
 	end
 	
 	if x==125 and y==11 then
-	create_msg("sonic","ca fait un moment que je suis la,",
-	"tu es un peu lent mais bien jouer quand meme")
+	create_msg("sonic","ca fait un moment que je\nsuis la",
+	"tu es un peu lente, mais\n bien jouer quand meme")
  end
  if x==121 and y==06 then
-		create_msg("yoda", "fini, tu as, mousquetaire,","a present, tu es")
+		create_msg("yoda", "finis, tu as, mousquetaire\na present, tu es")
 	end
 	end
 
@@ -591,7 +590,7 @@ function draw_bullets()
 	end
 end
 -->8
--- collision enemies
+ -- collision enemies
 
 function collision(a,b)
 return not	((a.x*8)>(b.x*8)+8					
@@ -721,8 +720,10 @@ function lose()
 	if p.life<=0 then
 	scene="over"
 	music(18)
-	end		
 end
+end 
+
+
 
 
 
@@ -990,14 +991,14 @@ __label__
 88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
 
 __gff__
-0000000100010101010101000001010001010000000000000000000000000001000001010000010000000000000000000001010000010100010100000100000002000500000200010000010100000000000000010200010100000001010001000101010000000000000101000101010100000000000200010101010101010101
+0000000100010101010101000001010001010000000000000000000000000001000001010000010000000000000000000001010000010100010100000101000002000500000200010000010100000000000000010200010100000001010001000101010000000000000101000101010100000000000200010101010101010101
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 __map__
 031f0104011b031f031f1f1f1f1f1f1e1f1f1f1f1f1f1f1f0103030303031f01262626232622242323222326222622262626262626262626262622262626265a4a494a4a4b4a4a4b4b4b4a4a4a4a4b4a4a4a4a4a4a4a4b0a39080d4b4a494a4b4b4b4a4a4a696a696a696a696969696a69696969696969313131313131313131
 1f0401200101011f1f031f1f1f1f031f1f1f1f1f031f1f0303030101401f1f1f282226262224262624262626262126242626262523252121262121212126225a494a484a4a494b484b4a4b4b4a484b4b484949494949480a0808080d484a484b4a4a4949680c696969046a69410c41696a0b0c690b696931343479787a343431
-1b011001011c011b1f031b1f030303031f030303031f1f0303030101031f03012a292221262623222626222625222522232422262121050505050624212126215a4a4a4a4a4a4a4a48484a494a4a524949495c6d484949490a0839390d49584d4d4d4d4d6816161901696a696a696a6941696969416969313434343434343431
+1b011001011c011b1f031b1f030303031f030303031f1f0303030101031f03012a292221262623222626222625222522232422262121050505050624212126215a4a4a4a4a4a4a4a48484a494a4a484949495c6d484949490a0839390d49584d4d4d4d4d6816161901696a696a696a6941696969416969313434343434343431
 011311120101011f1f1f1f1f011f1f1f1c1f040101030101030101030303030301282123242421212122212325262524212524210505080839080705052124215a494a494b4b49484849584d4d4d4d4d4948484949484949490a08080d494c4949494b686a011b140b1e041b0b046a69696a696a046969313434343434343431
-1f1c1b011b611a031f010153031b0101010101011e010101011e010303011f03012823212125212121212126212124212521210508080d262125083908212121215a4a4b5249494849484c494948484b4948484848484849490a39080d494c49494a4b68696f04141e0c1b010c1b610401410b406a6904313c3c3c343c3c3c31
+1f1c1b011b611a031f010153031b0101010101011e010101011e010303011f03012823212125212121212126212124212521210508080d262125083908212121215a4a4b4849494849484c494948484b4948484848484849490a39080d494c49494a4b68696f04141e0c1b010c1b610401410b406a6904313c3c3c343c3c3c31
 0103031f1f041401011b0101010101010118161616161901010101011c1f1f1f0128262124212126262121212121252425240939080d21215b21210808052421215a484a4a49484a49494c4849484b484948494948484949050e080d49484c49494b4a68690c0b1516161616190b010b011b040c016a0b313434345f34343431
 03030303031f1516161616161616161616170101313142313101010401030303042a292524222124262425252421242321210a08080d252121212221083921215a494a4b4b49494849494c494948484b4948494c494849490839080d4b484c48494b68016a696a011c1c1b1b141e010b011b0505061b0131347d345f34343431
 031b1f1f030303011c031f0101011f011f03030109051d0505060101011f03030101282524242421242121232121212421210a3908080d2121212125080821215a4a4a494b494a4849494c4949484b4b494a4a4c484849050808084b48484c494b4a68696a69696969010b01151616191c05080807060b313434345f34343431
