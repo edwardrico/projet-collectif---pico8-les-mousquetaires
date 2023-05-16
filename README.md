@@ -19,4 +19,4 @@ interagissez avec des personnages intrigants et découvrez des secrets cachés.
 
 ## Captures d'écran
 
-![Les Mousquetaire](<img width="915" alt="pico1-8" src="https://github.com/edwardrico/projet-collectif---pico8-les-mousquetaires/assets/120380332/63551183-f34d-4915-af31-f00973cb0af1">)
+![Les Mousquetaire](<img width="915" alt="pico1-8" src="https://github.com/edwardrico/projet-collectif---pico8-les-mousquetaires/assets/120380332/133e516b-476d-4010-9adf-f1153e514bdc">
